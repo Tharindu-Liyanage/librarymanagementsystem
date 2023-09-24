@@ -9,7 +9,8 @@ package com.mycompany.librarymanagementsystem;
  *
  * @author thari
  */
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -197,7 +198,7 @@ public class LibraryManagementSystem {
     
     // Take input for member NIC
     System.out.print("Enter Member NIC: ");
-    String nic = scanner.nextInt();
+    String nic = scanner.nextLine();
     
     // Take input for title and aithor
     System.out.print("Enter Book title: ");
@@ -227,6 +228,8 @@ public class LibraryManagementSystem {
     // Get current Date
     Date currentDate = new Date();
     
+    Date dueDate = getDueDateFromUser();
+    
     // Create a new transaction and add it to the list
     Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
     transactions.add(transaction);
@@ -253,6 +256,23 @@ public Book findBookByTitleAndAuthor(String title, String author) {
     }
     return null; // Book with the specified title and author not found
 }
+
+public Date getDueDateFromUser() {
+        Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
+        
+        System.out.print("Enter Due Date (yyyy-MM-dd): ");
+        String dueDateStr = scanner.nextLine();
+        
+        try {
+            Date dueDate = dateFormat.parse(dueDateStr);
+            return dueDate;
+        } catch (ParseException e) {
+            System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
+            return null;
+        }
+    }
+
     
      
     
@@ -260,6 +280,55 @@ public Book findBookByTitleAndAuthor(String title, String author) {
     
     public void returnBook(){
         
+         Scanner scanner = new Scanner(System.in);
+    
+    System.out.println("====== Return Book ======");
+    
+    // Take input for member NIC
+    System.out.print("Enter Member NIC: ");
+    String nic = scanner.nextLine();
+    
+    // Take input for title and aithor
+    System.out.print("Enter Book title: ");
+    String title = scanner.nextLine();
+    
+    System.out.print("Enter Book author: ");
+    String author = scanner.nextLine();
+    
+        
+        
+       Book book = findBookByTitleAndAuthor(title,author);
+        Transaction transaction = findTransactionByMemberAndBook(nic,title,author);
+        
+        if (transaction.getReturnDate() != null) {
+            System.out.println("The book has already been returned.");
+            return;
+        }
+        
+         if (transaction == null) {
+            System.out.println("Transaction not found. Please check again.");
+            return;
+        }
+        
+        
+        Date returnDate = new Date();
+        transaction.setReturnDate(returnDate);
+        
+        // Update the book's availability
+        book.setAvailable(true);
+        
+        
+        
+        
+    }
+    
+     private Transaction findTransactionByMemberAndBook(String nic, String title, String author) {
+        for (Transaction transaction : transactions) {
+            if (transaction.getMember().getNic().equals(nic) && transaction.getBook().getTitle().equals(title) && transaction.getBook().getAuthor().equals(author)) {
+                return transaction;
+            }
+        }
+        return null;
     }
     
     
