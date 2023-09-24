@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.Iterator;
+import java.util.Date;
 
 public class LibraryManagementSystem {
     
@@ -190,17 +191,72 @@ public class LibraryManagementSystem {
     
     public void lendBook(){
              
-        LibraryManagementSystem LibNew = new LibraryManagementSystem();
-        
-      
-        
-         System.out.println("====== Lend Book======");
-         
-         
-        LibNew.searchMember();
-        LibNew.searchBook();
-        
+    Scanner scanner = new Scanner(System.in);
+    
+    System.out.println("====== Lend Book ======");
+    
+    // Take input for member NIC
+    System.out.print("Enter Member NIC: ");
+    String nic = scanner.nextInt();
+    
+    // Take input for title and aithor
+    System.out.print("Enter Book title: ");
+    String title = scanner.nextLine();
+    
+    System.out.print("Enter Book author: ");
+    String author = scanner.nextLine();
+    
+   
+    Member member = findMemberByNic(nic);
+    Book book = findBookByTitleAndAuthor(title,author);
+    
+    
+    if (member == null || book == null) {
+        System.out.println("Member or book not found. Please check the NIC or Book details.");
+        return;
     }
+    
+    if (!book.isAvailable()) {
+        System.out.println("The book is not available for lending.");
+        return;
+    }
+    
+    // Generate a unique transaction ID
+    int transactionId = ++transactionIDCounter;
+    
+    // Get current Date
+    Date currentDate = new Date();
+    
+    // Create a new transaction and add it to the list
+    Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
+    transactions.add(transaction);
+    
+    // Update the book's availability
+    book.setAvailable(false);
+    
+    }
+    
+    public Member findMemberByNic(String nic) {
+    for (Member member : members) {
+        if (member.getNic().equals(nic)) {
+            return member; // Member with the specified NIC found
+        }
+    }
+    return null; // Member with the specified NIC not found
+}
+
+public Book findBookByTitleAndAuthor(String title, String author) {
+    for (Book book : books) {
+        if (book.getTitle().equals(title) && book.getAuthor().equals(author)) {
+            return book; // Book with the specified title and author found
+        }
+    }
+    return null; // Book with the specified title and author not found
+}
+    
+     
+    
+    
     
     public void returnBook(){
         
