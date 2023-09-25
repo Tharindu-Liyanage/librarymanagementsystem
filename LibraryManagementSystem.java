@@ -47,7 +47,9 @@ public class LibraryManagementSystem {
         
         LibraryManagementSystem lib = new LibraryManagementSystem();
         
-        lib.addBook();
+        Scanner scan = new Scanner(System.in);
+        
+    /*    lib.addBook();
        if(lib.searchBook()) {
           System.out.println("Book Found");
        }else{
@@ -84,6 +86,179 @@ public class LibraryManagementSystem {
             
             
         }
+        */
+        
+         int choice;
+         int innerChoice1;
+         int innerChoice2;
+         int innerChoice3;
+
+        do {
+            
+            System.out.println("==================================");
+            
+            System.out.println("          Menu:");
+            System.out.println("1. Member section");
+            System.out.println("2. Book section");
+            System.out.println("3. Lend section");
+            System.out.println("4. Exit");
+            
+            System.out.println("==================================");
+
+            System.out.print("Enter your choice: ");
+            choice = scan.nextInt();
+            
+            outerSwitch:
+            switch (choice) {
+                case 1:
+                    System.out.println("==================================");
+                    System.out.println("           Member Section:");
+                    System.out.println("1. Add member");
+                    System.out.println("2. Remove member");
+                    System.out.println("3. Search member");
+                    System.out.println("4. Display Member Names");
+                    System.out.println("5. Back to menu");
+                    System.out.println("==================================");
+                    
+                    System.out.print("Enter your choice: ");
+                    innerChoice1 =scan.nextInt();
+
+                    switch (innerChoice1) {
+                    case 1:
+                        System.out.println("1.Add member");
+                        lib.addBook();
+                        break; 
+                    case 2:
+                        System.out.println("2.Remove member");
+                        lib.removeBook();
+                        break;
+                    case 3:
+                        System.out.println("3.Search member");
+                        
+                         if(lib.searchBook()) {
+                            System.out.println("Book Found");
+                         }else{
+                             System.out.println("Book Not Found");
+                         }
+                         
+                        break;
+                        
+                    case 4:
+                        System.out.println("4.Display Member Names");
+                            lib.displayBookNames();
+                        break;
+                    case 5:
+                        System.out.println("4.Exit Book Section");
+                 
+                        break outerSwitch; // Exit the outer switch and continue after it
+                    default:
+                        System.out.println("Unknown inner choice.");
+                        break;
+                }
+                    break;
+                   
+                case 2:
+                    
+                    System.out.println("==================================");
+                    System.out.println("           Book Section:");
+                    System.out.println("1. Add book");
+                    System.out.println("2. Remove book");
+                    System.out.println("3. Search book");
+                    System.out.println("4. Display Book Names");
+                    System.out.println("5. Back to menu");
+                    System.out.println("==================================");
+                    
+                    System.out.print("Enter your choice: ");
+                    innerChoice2 =scan.nextInt();
+
+                    switch (innerChoice2) {
+                    case 1:
+                        System.out.println("1.Book Add");
+                        lib.addBook();
+                        break; 
+                    case 2:
+                        System.out.println("2.Remove Book");
+                        lib.removeBook();
+                        break;
+                    case 3:
+                        System.out.println("3.Search Book");
+                        
+                         if(lib.searchBook()) {
+                            System.out.println("Book Found");
+                         }else{
+                             System.out.println("Book Not Found");
+                         }
+                         
+                        break;
+                        
+                    case 4:
+                        System.out.println("4.Display Book Names");
+                            lib.displayBookNames();
+                        break;
+                    case 5:
+                        System.out.println("4.Exit Book Section");
+                 
+                        break outerSwitch; // Exit the outer switch and continue after it
+                    default:
+                        System.out.println("Unknown inner choice.");
+                        break;
+                }
+                    break;
+                case 3:
+                     
+                    System.out.println("==================================");
+                    System.out.println("           Lend Section:");
+                    System.out.println("1. Lend book");
+                    System.out.println("2. Return book");
+                    System.out.println("3. View Lending Information");
+                    System.out.println("4. Display Overdue Books");
+                    System.out.println("5. Back to menu");
+                    System.out.println("==================================");
+                    
+                    System.out.print("Enter your choice: ");
+                    innerChoice3 =scan.nextInt();
+
+                    switch (innerChoice3) {
+                    case 1:
+                        System.out.println("1.Lend Book");
+                        lib.addBook();
+                        break; 
+                    case 2:
+                        System.out.println("2.Return Book");
+                        lib.removeBook();
+                        break;
+                    case 3:
+                        System.out.println("3.View Lending Information");
+                        
+                         if(lib.searchBook()) {
+                            System.out.println("Book Found");
+                         }else{
+                             System.out.println("Book Not Found");
+                         }
+                         
+                        break;
+                        
+                    case 4:
+                        System.out.println("4.Display Overdue Books");
+                            lib.displayBookNames();
+                        break;
+                    case 5:
+                        System.out.println("4.Exit Book Section");
+                 
+                        break outerSwitch; // Exit the outer switch and continue after it
+                    default:
+                        System.out.println("Unknown inner choice.");
+                        break;
+                }
+                    break;
+                    
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+        } while (choice != 4);
         
         
         
@@ -111,6 +286,8 @@ public class LibraryManagementSystem {
         
         Book newBook = new Book(bookId, title, author);
         books.add(newBook);
+        
+        System.out.println("Book Added Successfully");
         
     }
     
@@ -261,7 +438,7 @@ public class LibraryManagementSystem {
  //   int transactionId = ++transactionIDCounter;
     
     // Get current Date
- //   Date currentDate = new Date();
+  //  Date currentDate = new Date();
     
  //   Date dueDate = getDueDateFromUser();
     
