@@ -136,9 +136,9 @@ public class LibraryManagementSystem {
                         System.out.println("3.Search member");
                         
                          if(lib.searchBook()) {
-                            System.out.println("Book Found");
+                            System.out.println("Member Found");
                          }else{
-                             System.out.println("Book Not Found");
+                             System.out.println("Member Not Found");
                          }
                          
                         break;
@@ -370,30 +370,63 @@ public class LibraryManagementSystem {
         
          Scanner scanner = new Scanner(System.in);
         
-         System.out.println("====== Add Book======");
+         System.out.println("====== Add Member======");
 
-        System.out.print("Enter Book Title: ");
-        String title = scanner.nextLine();
+        System.out.print("Enter Member Name: ");
+        String name = scanner.nextLine();
         
-        System.out.print("Enter Author: ");
-        String author = scanner.nextLine();
+        System.out.print("Enter Member Mobile: ");
+        String mobile = scanner.nextLine();
+        
+        System.out.print("Enter Member Address: ");
+        String address = scanner.nextLine();
+        
+        System.out.print("Enter Member NIC: ");
+        String nic = scanner.nextLine();
 
         
         int memberId = ++this.memberIDCounter;
 
         
-        Book newBook = new Book(bookId, title, author);
-        books.add(newBook);
+        Member newMember = new Member(memberId,name,mobile,address,nic);
+        books.add(newMember);
         
-        System.out.println("Book Added Successfully");
+        System.out.println("Member Added Successfully");
         
         
     
     }
     
     public void removeMember(){
+        
+        
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.println("====== Remove Member ======");
+        
+        System.out.print("Enter Member NIC: ");
+        String nic = scanner.nextLine();
+        
+        
+        
+         
+    for (Iterator<Member> iterator = members.iterator(); iterator.hasNext();) {
+        Member member = iterator.next();
+        if (member.getNic().equals(nic)) {
+            
+            System.out.println("Member name: " + member.getName() + " removed successfully!");
+            iterator.remove();
+            
+            return;
+        }
+        
+        
     
     }
+        
+        
+    }
+        
     
     
     public boolean searchMember(){
@@ -460,16 +493,20 @@ public class LibraryManagementSystem {
     }
     
     // Generate a unique transaction ID
- //   int transactionId = ++transactionIDCounter;
+    int transactionId = ++transactionIDCounter;
     
     // Get current Date
-  //  Date currentDate = new Date();
+    Date currentDate = new Date(); // checkout date
+    
+        Calendar calendar = Calendar.getInstance(); // Get the current date and time
+        calendar.add(Calendar.DAY_OF_MONTH, 7); // Add 7 days to the current date
+        Date dueDate = calendar.getTime(); // Convert the calendar object to a Date
     
  //   Date dueDate = getDueDateFromUser();
     
     // Create a new transaction and add it to the list
-   // Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
- //   transactions.add(transaction);
+   Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
+   transactions.add(transaction);
     
     // Update the book's availability
     book.setAvailable(false);
@@ -624,12 +661,6 @@ public Date getDueDateFromUser() {
     }
 }
     }
-    
-    
-    
-      
-                
-      
 
      private Transaction findTransactionByMemberAndBook(String nic, String title, String author) {
         for (Transaction transaction : transactions) {
