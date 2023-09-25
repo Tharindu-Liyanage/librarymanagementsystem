@@ -82,7 +82,7 @@ public class LibraryManagementSystem {
             
         }else if (diff > 0){
             
-            System.out.println("Your Fee Rs." + lib.calculateFine(diff));
+            System.out.println("Your Fee Rs." + lib.calculateFee(diff));
             
             
         }
@@ -347,14 +347,18 @@ public class LibraryManagementSystem {
     public void displayBookNames(){
          System.out.println("====== Book Details======");
          
-         for(Book book : books){
+         if (books.isEmpty()) {
+            System.out.println("No books found in the library.");
+         } else {
              
-             System.out.println("<<<<Book " + book.getId() +">>>>");
-         
-             System.out.println("Book ID : " + book.getId());
-             System.out.println("Book Title : " + book.getTitle());
-             System.out.println("Book Author : " + book.getAuthor());
-         }
+            for (Book book : books) {
+                
+                System.out.println("<<<<Book " + book.getId() + ">>>>");
+                System.out.println("Book ID : " + book.getId());
+                System.out.println("Book Title : " + book.getTitle());
+                System.out.println("Book Author : " + book.getAuthor());
+        }
+        }
          
         
         
@@ -541,16 +545,71 @@ public Date getDueDateFromUser() {
             
         }else if (diff > 0){
             
-            calculateFine(diff);
+            System.out.println("Amount to Pay : Rs. " + calculateFee(diff));
+            transaction.setFeeAmount(calculateFee(diff));
             
             
         }
         
+    }
         
         
         
+    public void displayLendingInformation(){
+           System.out.println("=========Lending Information===========");
+           
+           if (transactions.isEmpty()) {
+                    System.out.println("No transactions found.");
+           } else {
+               
+                for (Transaction transaction : transactions) {
+                    System.out.println("Transaction ID: " + transaction.getId());
+                    System.out.println("Member Name: " + transaction.getMember().getName());
+                    System.out.println("Member NIC: " + transaction.getMember().getNic());
+                    System.out.println("Check out date: " + transaction.getCheckOutDate());
+                    System.out.println("Due Date: " + transaction.getDueDate());
+
+                        if (transaction.getReturnDate() == null) {
+                            System.out.println("Return Date: Not Returned");
+                         } else {
+                            System.out.println("Return Date: " + transaction.getReturnDate());
+                         }
+
+                    System.out.println("Fee Amount: " + transaction.getFeeAmount());
+                }
+                    }
     }
     
+    
+    public void displayOverdueBooks(){
+           System.out.println("=========Display Overdue Books===========");
+           
+           if (transactions.isEmpty()) {
+                    System.out.println("No transactions found.");
+            } else {
+               
+                for (Transaction transaction : transactions) {
+                Date currentDate = new Date();
+
+                            if (transaction.getDueDate().before(currentDate)) {
+                            System.out.println("Book Id: " + transaction.getBook().getId());
+                            System.out.println("Book Name: " + transaction.getBook().getTitle());
+                            System.out.println("Book Author " + transaction.getBook().getAuthor());
+                            System.out.println("Member Name: " + transaction.getMember().getName());
+                            System.out.println("Member NIC: " + transaction.getMember().getNic());
+                            System.out.println("Check out date: " + transaction.getCheckOutDate());
+                            System.out.println("Due Date: " + transaction.getDueDate());
+        }
+    }
+}
+    }
+    
+    
+    
+      
+                
+      
+
      private Transaction findTransactionByMemberAndBook(String nic, String title, String author) {
         for (Transaction transaction : transactions) {
             if (transaction.getMember().getNic().equals(nic) && transaction.getBook().getTitle().equals(title) && transaction.getBook().getAuthor().equals(author)) {
@@ -572,7 +631,7 @@ public Date getDueDateFromUser() {
          
       
       
-    public double calculateFine(long diff){
+    public double calculateFee(long diff){
         
        
         
