@@ -9,6 +9,8 @@ package com.mycompany.librarymanagementsystem;
  *
  * @author thari
  */
+
+import java.util.Calendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -53,8 +55,41 @@ public class LibraryManagementSystem {
        }
         lib.displayBookNames();
         lib.removeBook();
+     
+     Date date = new Date();
+      
+     Calendar calendar = Calendar.getInstance(); // Get the current date and time
+        calendar.add(Calendar.DAY_OF_MONTH, 8); // Add 14 days to the current date
+        Date RDate = calendar.getTime(); // Convert the calendar object to a Date
+        
+        
+       System.out.println("Date"+ RDate);
+        
+        System.out.println("Date diff"+ lib.calculateDaysDifference(RDate, date));
+        
+        long diff = lib.calculateDaysDifference(RDate, date);
+        
+        
+        
+        if( diff == 0){
+            
+            System.out.print("Book return on the DueDate");
+        }else if (diff < 0){
+            
+            System.out.print("Book return on before the DueDate");
+            
+        }else if (diff > 0){
+            
+            System.out.println("Your Fee Rs." + lib.calculateFine(diff));
+            
+            
+        }
+        
+        
         
     }
+    
+    
     
     /*============== book section ======================*/
     
@@ -223,16 +258,16 @@ public class LibraryManagementSystem {
     }
     
     // Generate a unique transaction ID
-    int transactionId = ++transactionIDCounter;
+ //   int transactionId = ++transactionIDCounter;
     
     // Get current Date
-    Date currentDate = new Date();
+ //   Date currentDate = new Date();
     
-    Date dueDate = getDueDateFromUser();
+ //   Date dueDate = getDueDateFromUser();
     
     // Create a new transaction and add it to the list
-    Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
-    transactions.add(transaction);
+   // Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
+ //   transactions.add(transaction);
     
     // Update the book's availability
     book.setAvailable(false);
@@ -309,6 +344,7 @@ public Date getDueDateFromUser() {
             System.out.println("Transaction not found. Please check again.");
             return;
         }
+                
         
         
         Date returnDate = new Date();
@@ -316,6 +352,22 @@ public Date getDueDateFromUser() {
         
         // Update the book's availability
         book.setAvailable(true);
+        
+        int diff = calculateDaysDifference(returnDate, transaction.getdueDate());
+        
+        if( diff == 0){
+            
+            System.out.print("Book return on the DueDate");
+        }else if (diff < 0){
+            
+            System.out.print("Book return on before the DueDate");
+            
+        }else if (diff > 0){
+            
+            calculateFine(diff);
+            
+            
+        }
         
         
         
@@ -329,6 +381,33 @@ public Date getDueDateFromUser() {
             }
         }
         return null;
+    }
+     
+      private long calculateDaysDifference(Date dueDate, Date checkoutDate) {
+        long differenceInMillis = dueDate.getTime() - checkoutDate.getTime();
+        long differenceInDays = differenceInMillis / (1000 * 60 * 60 * 24);
+        
+        
+             return (int) differenceInDays;
+        
+    }
+        
+         
+      
+      
+    public double calculateFine(long diff){
+        
+       
+        
+       if(diff <=7){
+           
+           return (diff * 50);
+       }else{
+       
+           return  (7* 50 + (diff-7) *100);
+       }
+       
+                
     }
     
     
