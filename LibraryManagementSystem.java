@@ -9,6 +9,8 @@ package com.mycompany.librarymanagementsystem;
  *
  * @author thari
  */
+
+import java.util.Calendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -45,7 +47,9 @@ public class LibraryManagementSystem {
         
         LibraryManagementSystem lib = new LibraryManagementSystem();
         
-        lib.addBook();
+        Scanner scan = new Scanner(System.in);
+        
+    /*    lib.addBook();
        if(lib.searchBook()) {
           System.out.println("Book Found");
        }else{
@@ -53,8 +57,214 @@ public class LibraryManagementSystem {
        }
         lib.displayBookNames();
         lib.removeBook();
+     
+     Date date = new Date();
+      
+     Calendar calendar = Calendar.getInstance(); // Get the current date and time
+        calendar.add(Calendar.DAY_OF_MONTH, 8); // Add 14 days to the current date
+        Date RDate = calendar.getTime(); // Convert the calendar object to a Date
+        
+        
+       System.out.println("Date"+ RDate);
+        
+        System.out.println("Date diff"+ lib.calculateDaysDifference(RDate, date));
+        
+        long diff = lib.calculateDaysDifference(RDate, date);
+        
+        
+        
+        if( diff == 0){
+            
+            System.out.print("Book return on the DueDate");
+        }else if (diff < 0){
+            
+            System.out.print("Book return on before the DueDate");
+            
+        }else if (diff > 0){
+            
+            System.out.println("Your Fee Rs." + lib.calculateFee(diff));
+            
+            
+        }
+        */
+        
+         int choice;
+         int innerChoice1;
+         int innerChoice2;
+         int innerChoice3;
+
+        do {
+            
+            System.out.println("==================================");
+            
+            System.out.println("          Menu:");
+            System.out.println("1. Member section");
+            System.out.println("2. Book section");
+            System.out.println("3. Lend section");
+            System.out.println("4. Exit");
+            
+            System.out.println("==================================");
+
+            System.out.print("Enter your choice: ");
+            choice = scan.nextInt();
+            
+            outerSwitch:
+            switch (choice) {
+                case 1:
+                    System.out.println("==================================");
+                    System.out.println("           Member Section:");
+                    System.out.println("1. Add member");
+                    System.out.println("2. Remove member");
+                    System.out.println("3. Search member");
+                    System.out.println("4. Display Member Names");
+                    System.out.println("5. Back to menu");
+                    System.out.println("==================================");
+                    
+                    System.out.print("Enter your choice: ");
+                    innerChoice1 =scan.nextInt();
+
+                    switch (innerChoice1) {
+                    case 1:
+                        System.out.println("1.Add member");
+                        lib.addBook();
+                        break; 
+                    case 2:
+                        System.out.println("2.Remove member");
+                        lib.removeBook();
+                        break;
+                    case 3:
+                        System.out.println("3.Search member");
+                        
+                         if(lib.searchBook()) {
+                            System.out.println("Book Found");
+                         }else{
+                             System.out.println("Book Not Found");
+                         }
+                         
+                        break;
+                        
+                    case 4:
+                        System.out.println("4.Display Member Names");
+                            lib.displayBookNames();
+                        break;
+                    case 5:
+                        System.out.println("4.Exit Book Section");
+                 
+                        break outerSwitch; // Exit the outer switch and continue after it
+                    default:
+                        System.out.println("Unknown inner choice.");
+                        break;
+                }
+                    break;
+                   
+                case 2:
+                    
+                    System.out.println("==================================");
+                    System.out.println("           Book Section:");
+                    System.out.println("1. Add book");
+                    System.out.println("2. Remove book");
+                    System.out.println("3. Search book");
+                    System.out.println("4. Display Book Names");
+                    System.out.println("5. Back to menu");
+                    System.out.println("==================================");
+                    
+                    System.out.print("Enter your choice: ");
+                    innerChoice2 =scan.nextInt();
+
+                    switch (innerChoice2) {
+                    case 1:
+                        System.out.println("1.Book Add");
+                        lib.addBook();
+                        break; 
+                    case 2:
+                        System.out.println("2.Remove Book");
+                        lib.removeBook();
+                        break;
+                    case 3:
+                        System.out.println("3.Search Book");
+                        
+                         if(lib.searchBook()) {
+                            System.out.println("Book Found");
+                         }else{
+                             System.out.println("Book Not Found");
+                         }
+                         
+                        break;
+                        
+                    case 4:
+                        System.out.println("4.Display Book Names");
+                            lib.displayBookNames();
+                        break;
+                    case 5:
+                        System.out.println("4.Exit Book Section");
+                 
+                        break outerSwitch; // Exit the outer switch and continue after it
+                    default:
+                        System.out.println("Unknown inner choice.");
+                        break;
+                }
+                    break;
+                case 3:
+                     
+                    System.out.println("==================================");
+                    System.out.println("           Lend Section:");
+                    System.out.println("1. Lend book");
+                    System.out.println("2. Return book");
+                    System.out.println("3. View Lending Information");
+                    System.out.println("4. Display Overdue Books");
+                    System.out.println("5. Back to menu");
+                    System.out.println("==================================");
+                    
+                    System.out.print("Enter your choice: ");
+                    innerChoice3 =scan.nextInt();
+
+                    switch (innerChoice3) {
+                    case 1:
+                        System.out.println("1.Lend Book");
+                        lib.addBook();
+                        break; 
+                    case 2:
+                        System.out.println("2.Return Book");
+                        lib.removeBook();
+                        break;
+                    case 3:
+                        System.out.println("3.View Lending Information");
+                        
+                         if(lib.searchBook()) {
+                            System.out.println("Book Found");
+                         }else{
+                             System.out.println("Book Not Found");
+                         }
+                         
+                        break;
+                        
+                    case 4:
+                        System.out.println("4.Display Overdue Books");
+                            lib.displayBookNames();
+                        break;
+                    case 5:
+                        System.out.println("4.Exit Book Section");
+                 
+                        break outerSwitch; // Exit the outer switch and continue after it
+                    default:
+                        System.out.println("Unknown inner choice.");
+                        break;
+                }
+                    break;
+                    
+                case 4:
+                    System.exit(0);
+                    break;
+                default:
+                    System.out.println("Invalid choice");
+            }
+        } while (choice != 4);
+        
+        
         
     }
+    
+    
     
     /*============== book section ======================*/
     
@@ -76,6 +286,8 @@ public class LibraryManagementSystem {
         
         Book newBook = new Book(bookId, title, author);
         books.add(newBook);
+        
+        System.out.println("Book Added Successfully");
         
     }
     
@@ -135,14 +347,18 @@ public class LibraryManagementSystem {
     public void displayBookNames(){
          System.out.println("====== Book Details======");
          
-         for(Book book : books){
+         if (books.isEmpty()) {
+            System.out.println("No books found in the library.");
+         } else {
              
-             System.out.println("<<<<Book " + book.getId() +">>>>");
-         
-             System.out.println("Book ID : " + book.getId());
-             System.out.println("Book Title : " + book.getTitle());
-             System.out.println("Book Author : " + book.getAuthor());
-         }
+            for (Book book : books) {
+                
+                System.out.println("<<<<Book " + book.getId() + ">>>>");
+                System.out.println("Book ID : " + book.getId());
+                System.out.println("Book Title : " + book.getTitle());
+                System.out.println("Book Author : " + book.getAuthor());
+        }
+        }
          
         
         
@@ -151,6 +367,27 @@ public class LibraryManagementSystem {
     /*============== member section  ======================*/
     
     public void addMember(){
+        
+         Scanner scanner = new Scanner(System.in);
+        
+         System.out.println("====== Add Book======");
+
+        System.out.print("Enter Book Title: ");
+        String title = scanner.nextLine();
+        
+        System.out.print("Enter Author: ");
+        String author = scanner.nextLine();
+
+        
+        int memberId = ++this.memberIDCounter;
+
+        
+        Book newBook = new Book(bookId, title, author);
+        books.add(newBook);
+        
+        System.out.println("Book Added Successfully");
+        
+        
     
     }
     
@@ -223,16 +460,16 @@ public class LibraryManagementSystem {
     }
     
     // Generate a unique transaction ID
-    int transactionId = ++transactionIDCounter;
+ //   int transactionId = ++transactionIDCounter;
     
     // Get current Date
-    Date currentDate = new Date();
+  //  Date currentDate = new Date();
     
-    Date dueDate = getDueDateFromUser();
+ //   Date dueDate = getDueDateFromUser();
     
     // Create a new transaction and add it to the list
-    Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
-    transactions.add(transaction);
+   // Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
+ //   transactions.add(transaction);
     
     // Update the book's availability
     book.setAvailable(false);
@@ -309,6 +546,7 @@ public Date getDueDateFromUser() {
             System.out.println("Transaction not found. Please check again.");
             return;
         }
+                
         
         
         Date returnDate = new Date();
@@ -317,11 +555,82 @@ public Date getDueDateFromUser() {
         // Update the book's availability
         book.setAvailable(true);
         
+        int diff = calculateDaysDifference(returnDate, transaction.getdueDate());
         
-        
+        if( diff == 0){
+            
+            System.out.print("Book return on the DueDate");
+        }else if (diff < 0){
+            
+            System.out.print("Book return on before the DueDate");
+            
+        }else if (diff > 0){
+            
+            System.out.println("Amount to Pay : Rs. " + calculateFee(diff));
+            transaction.setFeeAmount(calculateFee(diff));
+            
+            
+        }
         
     }
+        
+        
+        
+    public void displayLendingInformation(){
+           System.out.println("=========Lending Information===========");
+           
+           if (transactions.isEmpty()) {
+                    System.out.println("No transactions found.");
+           } else {
+               
+                for (Transaction transaction : transactions) {
+                    System.out.println("Transaction ID: " + transaction.getId());
+                    System.out.println("Member Name: " + transaction.getMember().getName());
+                    System.out.println("Member NIC: " + transaction.getMember().getNic());
+                    System.out.println("Check out date: " + transaction.getCheckOutDate());
+                    System.out.println("Due Date: " + transaction.getDueDate());
+
+                        if (transaction.getReturnDate() == null) {
+                            System.out.println("Return Date: Not Returned");
+                         } else {
+                            System.out.println("Return Date: " + transaction.getReturnDate());
+                         }
+
+                    System.out.println("Fee Amount: " + transaction.getFeeAmount());
+                }
+                    }
+    }
     
+    
+    public void displayOverdueBooks(){
+           System.out.println("=========Display Overdue Books===========");
+           
+           if (transactions.isEmpty()) {
+                    System.out.println("No transactions found.");
+            } else {
+               
+                for (Transaction transaction : transactions) {
+                Date currentDate = new Date();
+
+                            if (transaction.getDueDate().before(currentDate)) {
+                            System.out.println("Book Id: " + transaction.getBook().getId());
+                            System.out.println("Book Name: " + transaction.getBook().getTitle());
+                            System.out.println("Book Author " + transaction.getBook().getAuthor());
+                            System.out.println("Member Name: " + transaction.getMember().getName());
+                            System.out.println("Member NIC: " + transaction.getMember().getNic());
+                            System.out.println("Check out date: " + transaction.getCheckOutDate());
+                            System.out.println("Due Date: " + transaction.getDueDate());
+        }
+    }
+}
+    }
+    
+    
+    
+      
+                
+      
+
      private Transaction findTransactionByMemberAndBook(String nic, String title, String author) {
         for (Transaction transaction : transactions) {
             if (transaction.getMember().getNic().equals(nic) && transaction.getBook().getTitle().equals(title) && transaction.getBook().getAuthor().equals(author)) {
@@ -329,6 +638,33 @@ public Date getDueDateFromUser() {
             }
         }
         return null;
+    }
+     
+      private long calculateDaysDifference(Date dueDate, Date checkoutDate) {
+        long differenceInMillis = dueDate.getTime() - checkoutDate.getTime();
+        long differenceInDays = differenceInMillis / (1000 * 60 * 60 * 24);
+        
+        
+             return (int) differenceInDays;
+        
+    }
+        
+         
+      
+      
+    public double calculateFee(long diff){
+        
+       
+        
+       if(diff <=7){
+           
+           return (diff * 50);
+       }else{
+       
+           return  (7* 50 + (diff-7) *100);
+       }
+       
+                
     }
     
     
