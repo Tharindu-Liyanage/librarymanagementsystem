@@ -367,6 +367,27 @@ public class LibraryManagementSystem {
     /*============== member section  ======================*/
     
     public void addMember(){
+        
+         Scanner scanner = new Scanner(System.in);
+        
+         System.out.println("====== Add Book======");
+
+        System.out.print("Enter Book Title: ");
+        String title = scanner.nextLine();
+        
+        System.out.print("Enter Author: ");
+        String author = scanner.nextLine();
+
+        
+        int memberId = ++this.memberIDCounter;
+
+        
+        Book newBook = new Book(bookId, title, author);
+        books.add(newBook);
+        
+        System.out.println("Book Added Successfully");
+        
+        
     
     }
     
