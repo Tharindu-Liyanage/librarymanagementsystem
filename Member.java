@@ -10,13 +10,39 @@ package com.mycompany.librarymanagementsystem;
  */
 public class Member {
     
+    private int id;
+    private String name;
+    private String phoneNumber;
+    private String address;
     private String nic;
     
+    public Book(int id, String name, String phoneNumber, String address, String nic) {
+        
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.nic = nic;
+    }
     
-    
-    
+    public int getId(){
+        return id;
+    }
+
+    public String getName(){
+        return name;
+    }
+
+    public String getPhoneNumber(){
+        return phoneNumber;
+    }
+
+    public String getAddress(){
+        return address;
+    }
     
     public String getNic(){
         return nic;
+    }
     }
 }
