@@ -87,6 +87,10 @@ public class LibraryManagementSystem {
             
         }
         */
+    
+        
+        
+        
         
          int choice;
          int innerChoice1;
@@ -126,16 +130,16 @@ public class LibraryManagementSystem {
                     switch (innerChoice1) {
                     case 1:
                         System.out.println("1.Add member");
-                        lib.addBook();
+                        lib.addMember();
                         break; 
                     case 2:
                         System.out.println("2.Remove member");
-                        lib.removeBook();
+                        lib.removeMember();
                         break;
                     case 3:
                         System.out.println("3.Search member");
                         
-                         if(lib.searchBook()) {
+                         if(lib.searchMember()) {
                             System.out.println("Member Found");
                          }else{
                              System.out.println("Member Not Found");
@@ -145,7 +149,7 @@ public class LibraryManagementSystem {
                         
                     case 4:
                         System.out.println("4.Display Member Names");
-                            lib.displayBookNames();
+                            lib.displayMemberNames();
                         break;
                     case 5:
                         System.out.println("4.Exit Book Section");
@@ -221,7 +225,7 @@ public class LibraryManagementSystem {
                     switch (innerChoice3) {
                     case 1:
                         System.out.println("1.Lend Book");
-                        lib.addBook();
+                        lib.lendBook();
                         break; 
                     case 2:
                         System.out.println("2.Return Book");
@@ -230,11 +234,7 @@ public class LibraryManagementSystem {
                     case 3:
                         System.out.println("3.View Lending Information");
                         
-                         if(lib.searchBook()) {
-                            System.out.println("Book Found");
-                         }else{
-                             System.out.println("Book Not Found");
-                         }
+                         lib.displayLendingInformation();
                          
                         break;
                         
@@ -302,7 +302,7 @@ public class LibraryManagementSystem {
         System.out.print("Enter Book Author: ");
         String author = scanner.nextLine();
         
-         
+         //initializes an iterator for the bookslist. It sets up a loop to iterate through the list of books. 
     for (Iterator<Book> iterator = books.iterator(); iterator.hasNext();) {
         Book book = iterator.next();
         if (book.getTitle().equals(title) && book.getAuthor().equals(author)) {
@@ -368,7 +368,7 @@ public class LibraryManagementSystem {
     
     public void addMember(){
         
-         Scanner scanner = new Scanner(System.in);
+   /*      Scanner scanner = new Scanner(System.in);
         
          System.out.println("====== Add Member======");
 
@@ -387,13 +387,16 @@ public class LibraryManagementSystem {
         
         int memberId = ++this.memberIDCounter;
 
-        
+         // Create a new member and add it to the list
         Member newMember = new Member(memberId,name,mobile,address,nic);
-        books.add(newMember);
+        members.add(newMember);
         
         System.out.println("Member Added Successfully");
         
-        
+        */
+       Member mem1 = new Member("200");
+       members.add(mem1);
+        System.out.println("Member Added Successfully");
     
     }
     
@@ -408,7 +411,7 @@ public class LibraryManagementSystem {
         String nic = scanner.nextLine();
         
         
-        
+        //initializes an iterator for the members list. It sets up a loop to iterate through the list of members.
          
     for (Iterator<Member> iterator = members.iterator(); iterator.hasNext();) {
         Member member = iterator.next();
@@ -622,7 +625,7 @@ public Date getDueDateFromUser() {
                
                 for (Transaction transaction : transactions) {
                     System.out.println("Transaction ID: " + transaction.getId());
-                    System.out.println("Member Name: " + transaction.getMember().getName());
+                //    System.out.println("Member Name: " + transaction.getMember().getName());
                     System.out.println("Member NIC: " + transaction.getMember().getNic());
                     System.out.println("Check out date: " + transaction.getCheckOutDate());
                     System.out.println("Due Date: " + transaction.getDueDate());
@@ -653,7 +656,7 @@ public Date getDueDateFromUser() {
                             System.out.println("Book Id: " + transaction.getBook().getId());
                             System.out.println("Book Name: " + transaction.getBook().getTitle());
                             System.out.println("Book Author " + transaction.getBook().getAuthor());
-                            System.out.println("Member Name: " + transaction.getMember().getName());
+                     //       System.out.println("Member Name: " + transaction.getMember().getName());
                             System.out.println("Member NIC: " + transaction.getMember().getNic());
                             System.out.println("Check out date: " + transaction.getCheckOutDate());
                             System.out.println("Due Date: " + transaction.getDueDate());
