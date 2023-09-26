@@ -16,7 +16,7 @@ public class Member {
     private String address;
     private String nic;
     
-    public Book(int id, String name, String phoneNumber, String address, String nic) {
+    public Member(int id, String name, String phoneNumber, String address, String nic) {
         
         this.id = id;
         this.name = name;
