@@ -9,14 +9,18 @@ package com.mycompany.librarymanagementsystem;
  * @author thari
  */
 public class Member {
-
+ 
+  
     private int id;
     private String name;
     private String phoneNumber;
     private String address;
     private String nic;
 
+
     public Member(int id, String name, String phoneNumber, String address, String nic) {
+
+  
 
         this.id = id;
         this.name = name;
@@ -24,7 +28,6 @@ public class Member {
         this.address = address;
         this.nic = nic;
     }
-
 
 
     public int getId(){
@@ -46,4 +49,6 @@ public class Member {
     public String getNic(){
         return nic;
     }
-    }
+    
+}
+
