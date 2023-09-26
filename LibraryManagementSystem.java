@@ -9,10 +9,9 @@ package com.mycompany.librarymanagementsystem;
  *
  * @author thari
  */
-
-import java.util.Calendar;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -48,54 +47,11 @@ public class LibraryManagementSystem {
         LibraryManagementSystem lib = new LibraryManagementSystem();
         
         Scanner scan = new Scanner(System.in);
-        
-    /*    lib.addBook();
-       if(lib.searchBook()) {
-          System.out.println("Book Found");
-       }else{
-           System.out.println("Book Not Found");
-       }
-        lib.displayBookNames();
-        lib.removeBook();
-     
-     Date date = new Date();
-      
-     Calendar calendar = Calendar.getInstance(); // Get the current date and time
-        calendar.add(Calendar.DAY_OF_MONTH, 8); // Add 14 days to the current date
-        Date RDate = calendar.getTime(); // Convert the calendar object to a Date
-        
-        
-       System.out.println("Date"+ RDate);
-        
-        System.out.println("Date diff"+ lib.calculateDaysDifference(RDate, date));
-        
-        long diff = lib.calculateDaysDifference(RDate, date);
-        
-        
-        
-        if( diff == 0){
-            
-            System.out.print("Book return on the DueDate");
-        }else if (diff < 0){
-            
-            System.out.print("Book return on before the DueDate");
-            
-        }else if (diff > 0){
-            
-            System.out.println("Your Fee Rs." + lib.calculateFee(diff));
-            
-            
-        }
-        */
-    
-        
-        
-        
-        
-         int choice;
-         int innerChoice1;
-         int innerChoice2;
-         int innerChoice3;
+
+         String choice;
+         String innerChoice1;
+         String innerChoice2;
+         String innerChoice3;
 
         do {
             
@@ -110,11 +66,11 @@ public class LibraryManagementSystem {
             System.out.println("==================================");
 
             System.out.print("Enter your choice: ");
-            choice = scan.nextInt();
+            choice = scan.nextLine();
             
             outerSwitch:
             switch (choice) {
-                case 1:
+                case "1":
                     System.out.println("==================================");
                     System.out.println("           Member Section:");
                     System.out.println("1. Add member");
@@ -125,43 +81,40 @@ public class LibraryManagementSystem {
                     System.out.println("==================================");
                     
                     System.out.print("Enter your choice: ");
-                    innerChoice1 =scan.nextInt();
+                    innerChoice1 =scan.nextLine();
 
                     switch (innerChoice1) {
-                    case 1:
-                        System.out.println("1.Add member");
+                    case "1":
+                       // System.out.println("1.Add member");
                         lib.addMember();
                         break; 
-                    case 2:
-                        System.out.println("2.Remove member");
+                    case "2":
+                        //System.out.println("2.Remove member");
                         lib.removeMember();
                         break;
-                    case 3:
-                        System.out.println("3.Search member");
+                    case "3":
+                      //  System.out.println("3.Search member");
                         
-                         if(lib.searchMember()) {
-                            System.out.println("Member Found");
-                         }else{
-                             System.out.println("Member Not Found");
-                         }
+                            lib.searchMember();
+                            
                          
                         break;
                         
-                    case 4:
-                        System.out.println("4.Display Member Names");
+                    case "4":
+                      //  System.out.println("4.Display Member Names");
                             lib.displayMemberNames();
                         break;
-                    case 5:
-                        System.out.println("4.Exit Book Section");
+                    case "5":
+                        System.out.println("4.Exit Member Section");
                  
                         break outerSwitch; // Exit the outer switch and continue after it
                     default:
-                        System.out.println("Unknown inner choice.");
+                        System.out.println("Unknown choice.");
                         break;
                 }
                     break;
                    
-                case 2:
+                case "2":
                     
                     System.out.println("==================================");
                     System.out.println("           Book Section:");
@@ -173,42 +126,39 @@ public class LibraryManagementSystem {
                     System.out.println("==================================");
                     
                     System.out.print("Enter your choice: ");
-                    innerChoice2 =scan.nextInt();
+                    innerChoice2 =scan.nextLine();
 
                     switch (innerChoice2) {
-                    case 1:
-                        System.out.println("1.Book Add");
+                    case "1":
+                      //  System.out.println("1.Book Add");
                         lib.addBook();
                         break; 
-                    case 2:
-                        System.out.println("2.Remove Book");
+                    case "2":
+                       // System.out.println("2.Remove Book");
                         lib.removeBook();
                         break;
-                    case 3:
-                        System.out.println("3.Search Book");
+                    case "3":
+                        //System.out.println("3.Search Book");
                         
-                         if(lib.searchBook()) {
-                            System.out.println("Book Found");
-                         }else{
-                             System.out.println("Book Not Found");
-                         }
+                         lib.searchBook();
+                           
                          
                         break;
                         
-                    case 4:
-                        System.out.println("4.Display Book Names");
+                    case "4":
+                        //System.out.println("4.Display Book Names");
                             lib.displayBookNames();
                         break;
-                    case 5:
+                    case "5":
                         System.out.println("4.Exit Book Section");
                  
                         break outerSwitch; // Exit the outer switch and continue after it
                     default:
-                        System.out.println("Unknown inner choice.");
+                        System.out.println("Unknown choice.");
                         break;
                 }
                     break;
-                case 3:
+                case "3":
                      
                     System.out.println("==================================");
                     System.out.println("           Lend Section:");
@@ -220,45 +170,45 @@ public class LibraryManagementSystem {
                     System.out.println("==================================");
                     
                     System.out.print("Enter your choice: ");
-                    innerChoice3 =scan.nextInt();
+                    innerChoice3 =scan.nextLine();
 
                     switch (innerChoice3) {
-                    case 1:
-                        System.out.println("1.Lend Book");
+                    case "1":
+                     //   System.out.println("1.Lend Book");
                         lib.lendBook();
                         break; 
-                    case 2:
-                        System.out.println("2.Return Book");
-                        lib.removeBook();
+                    case "2":
+                      //  System.out.println("2.Return Book");
+                        lib.returnBook();
                         break;
-                    case 3:
-                        System.out.println("3.View Lending Information");
+                    case "3":
+                      //  System.out.println("3.View Lending Information");
                         
                          lib.displayLendingInformation();
                          
                         break;
                         
-                    case 4:
-                        System.out.println("4.Display Overdue Books");
-                            lib.displayBookNames();
+                    case "4":
+                      //  System.out.println("4.Display Overdue Books");
+                            lib.displayOverdueBooks();
                         break;
-                    case 5:
-                        System.out.println("4.Exit Book Section");
+                    case "5":
+                        System.out.println("4.Exit Lending Section");
                  
                         break outerSwitch; // Exit the outer switch and continue after it
                     default:
-                        System.out.println("Unknown inner choice.");
+                        System.out.println("Unknown choice.");
                         break;
                 }
                     break;
                     
-                case 4:
+                case "4":
                     System.exit(0);
                     break;
                 default:
                     System.out.println("Invalid choice");
             }
-        } while (choice != 4);
+        } while (!choice.equals("4")); 
         
         
         
@@ -266,7 +216,7 @@ public class LibraryManagementSystem {
     
     
     
-    /*============== book section ======================*/
+    /*============================== book section ======================================================*/
     
     public void addBook(){
         
@@ -317,34 +267,38 @@ public class LibraryManagementSystem {
         
     }
     
-    public boolean searchBook(){
+    public void searchBook(){
         
-          Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(System.in);
         
-         System.out.println("====== Search Book======");
+            System.out.println("====== Search Book======");
         
-        System.out.print("Enter Book Title: ");
-        String title = scanner.nextLine();
+            System.out.print("Enter Book Title: ");
+            String title = scanner.nextLine();
         
-        System.out.print("Enter Book Author: ");
-        String author = scanner.nextLine();
+            System.out.print("Enter Book Author: ");
+            String author = scanner.nextLine();
     
            
-        for(Book book : books){
+            for(Book book : books){
 
-            if(book.getTitle().equals(title) && book.getAuthor().equals(author)){
+                if(book.getTitle().equals(title) && book.getAuthor().equals(author)){
                
-                return true;
-            }
+                    System.out.println("Book with title : " + title + " by author : " + author + " Found" );
+                    return;
+                    }
             
-        }
+                }
 
             
-        return false;
+            System.out.println("Book with title : " + title + "by author : " + author + " Not Found" );
     }
     
     
     public void displayBookNames(){
+        
+        int id=1;
+        
          System.out.println("====== Book Details======");
          
          if (books.isEmpty()) {
@@ -353,10 +307,12 @@ public class LibraryManagementSystem {
              
             for (Book book : books) {
                 
-                System.out.println("<<<<Book " + book.getId() + ">>>>");
+                System.out.println("<<<<Book " + id + " >>>>");
+                ++id;
                 System.out.println("Book ID : " + book.getId());
                 System.out.println("Book Title : " + book.getTitle());
                 System.out.println("Book Author : " + book.getAuthor());
+                System.out.println();
         }
         }
          
@@ -364,11 +320,18 @@ public class LibraryManagementSystem {
         
     }
     
-    /*============== member section  ======================*/
+    /*============================== book section over =================================================*/
+    
+    
+    
+    
+    
+   
+    /*============================== member section  =======================================================*/
     
     public void addMember(){
         
-   /*      Scanner scanner = new Scanner(System.in);
+         Scanner scanner = new Scanner(System.in);
         
          System.out.println("====== Add Member======");
 
@@ -393,10 +356,8 @@ public class LibraryManagementSystem {
         
         System.out.println("Member Added Successfully");
         
-        */
-       Member mem1 = new Member("200");
-       members.add(mem1);
-        System.out.println("Member Added Successfully");
+        
+     
     
     }
     
@@ -423,6 +384,8 @@ public class LibraryManagementSystem {
             return;
         }
         
+        System.out.println("Member Not Found");
+        
         
     
     }
@@ -432,7 +395,7 @@ public class LibraryManagementSystem {
         
     
     
-    public boolean searchMember(){
+    public void searchMember(){
         
         Scanner scanner = new Scanner(System.in);
         
@@ -447,21 +410,58 @@ public class LibraryManagementSystem {
 
             if(member.getNic().equals(nic)){
                
-                return true;
+                System.out.println("Member name: " + member.getName() + " found");
+                return;
             }
             
         }
 
             
-        return false;
+        System.out.println("Member Nic: " + nic + " not found");
     }
     
     
     public void displayMemberNames(){
+        
+        
+        System.out.println("====== Member Details======");
+         
+        int id =1;
+        
+         if (members.isEmpty()) {
+            System.out.println("No Members found in the library.");
+         } else {
+             
+            for (Member member : members) {
+                
+                System.out.println("<<<<Member " + id + " >>>>");
+                ++id;
+                
+                System.out.println("Member Name : " + member.getName());
+                System.out.println("Member Phone number : " + member.getPhoneNumber());
+                System.out.println("Member Address : " + member.getAddress());
+                System.out.println("Member Nic : " + member.getNic());
+                System.out.println();
+ 
+        }
+        }
+        
+        
     
     }
     
-    /*============== lend section  ======================*/
+     /*======================================   member section over =======================================================*/
+    
+    
+    
+    
+    
+    
+    
+    /*============================================lend section  ===========================================================*/
+    
+    
+    
     
     public void lendBook(){
              
@@ -505,16 +505,68 @@ public class LibraryManagementSystem {
         calendar.add(Calendar.DAY_OF_MONTH, 7); // Add 7 days to the current date
         Date dueDate = calendar.getTime(); // Convert the calendar object to a Date
     
- //   Date dueDate = getDueDateFromUser();
+ 
     
     // Create a new transaction and add it to the list
    Transaction transaction = new Transaction(transactionId, book, member, currentDate, dueDate);
    transactions.add(transaction);
+   
+   
+   
+   //for testing overdue dates and fees
+ 
+         
+         
+   Book book1 = new Book(200,"World","John Cave");
+   Book book2 = new Book(201,"Sri Lanka","Mark leon");
+   books.add(book1);
+    books.add(book2);
+   Member mem1 = new Member(1000,"Ana marie","077111111","Colombo","201");
+   Member mem2 = new Member(1001,"Kathy Carpenter","07722222","Kurunegala","202");
+   members.add(mem1);
+    members.add(mem2);
+  
+   
+     try {
+            // Create a SimpleDateFormat to parse the date string
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+
+            // Parse the date string "2023/09/18" into a Date object
+            Date specificDate1 = dateFormat.parse("2023/09/18");
+            
+            // Parse the date string "2023/09/11" into a Date object
+            Date specificDate2 = dateFormat.parse("2023/09/11");
+            
+             Transaction transaction1 = new Transaction(500, book1, mem1, currentDate, specificDate1);
+               Transaction transaction2 = new Transaction(501, book2, mem2, currentDate, specificDate2);
+               
+               transactions.add(transaction1);
+               transactions.add(transaction2);
+
+        } catch (ParseException e) {
+            System.err.println("Invalid date format. Please use yyyy/MM/dd.");
+        }
+   
+   
+    //for testing overdue dates and fees *** code over
+   
+   
     
     // Update the book's availability
     book.setAvailable(false);
     
+    
+    System.out.println();
+    System.out.println("Lending a book to " + member.getName());
+    System.out.println("Book title :" + book.getTitle());
+    System.out.println("Due Date :" + dueDate);
+    System.out.println();
+    
+    
     }
+    
+    
+    
     
     public Member findMemberByNic(String nic) {
     for (Member member : members) {
@@ -534,27 +586,6 @@ public Book findBookByTitleAndAuthor(String title, String author) {
     return null; // Book with the specified title and author not found
 }
 
-public Date getDueDateFromUser() {
-        Scanner scanner = new Scanner(System.in);
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd"); // Define your desired date format
-        
-        System.out.print("Enter Due Date (yyyy-MM-dd): ");
-        String dueDateStr = scanner.nextLine();
-        
-        try {
-            Date dueDate = dateFormat.parse(dueDateStr);
-            return dueDate;
-        } catch (ParseException e) {
-            System.out.println("Invalid date format. Please enter the date in yyyy-MM-dd format.");
-            return null;
-        }
-    }
-
-    
-     
-    
-    
-    
     public void returnBook(){
         
          Scanner scanner = new Scanner(System.in);
@@ -582,10 +613,7 @@ public Date getDueDateFromUser() {
             return;
         }
         
-         if (transaction == null) {
-            System.out.println("Transaction not found. Please check again.");
-            return;
-        }
+        
                 
         
         
@@ -595,18 +623,21 @@ public Date getDueDateFromUser() {
         // Update the book's availability
         book.setAvailable(true);
         
-        int diff = calculateDaysDifference(returnDate, transaction.getdueDate());
+        long diff = calculateDaysDifference(returnDate, transaction.getDueDate());
         
         if( diff == 0){
             
-            System.out.print("Book return on the DueDate");
-        }else if (diff < 0){
+            System.out.println(transaction.getMember().getName() + "  return the book on Due Date");
             
-            System.out.print("Book return on before the DueDate");
+        }else if (diff < 0){
+            if(diff<0) diff = -1* diff;
+            
+            System.out.println(transaction.getMember().getName() + "  return the book  " +diff+ " days before Due Date");
             
         }else if (diff > 0){
             
-            System.out.println("Amount to Pay : Rs. " + calculateFee(diff));
+            System.out.println(transaction.getMember().getName() + "  return the book  " +diff+ " days after Due Date");
+            System.out.println("Amount to Pay : Rs. " + calculateFee(diff)); 
             transaction.setFeeAmount(calculateFee(diff));
             
             
@@ -619,13 +650,21 @@ public Date getDueDateFromUser() {
     public void displayLendingInformation(){
            System.out.println("=========Lending Information===========");
            
+           int id =1;
+           Date currentDate = new Date();
+           
            if (transactions.isEmpty()) {
                     System.out.println("No transactions found.");
            } else {
                
                 for (Transaction transaction : transactions) {
+                    
+                     System.out.println("<<<<Transaction #" + id + ">>>>");
+                     
+                     ++id;
+                    
                     System.out.println("Transaction ID: " + transaction.getId());
-                //    System.out.println("Member Name: " + transaction.getMember().getName());
+                    System.out.println("Member Name: " + transaction.getMember().getName());
                     System.out.println("Member NIC: " + transaction.getMember().getNic());
                     System.out.println("Check out date: " + transaction.getCheckOutDate());
                     System.out.println("Due Date: " + transaction.getDueDate());
@@ -635,8 +674,21 @@ public Date getDueDateFromUser() {
                          } else {
                             System.out.println("Return Date: " + transaction.getReturnDate());
                          }
+                        
+                        //check is book overdue
+                        if (transaction.getDueDate().before(currentDate)) {
+                            
+                            long diff = calculateDaysDifference(currentDate, transaction.getDueDate());
+                            System.out.println("Book is Overdue Amount to Pay : Rs. " + calculateFee(diff));
 
-                    System.out.println("Fee Amount: " + transaction.getFeeAmount());
+                        }else{
+                            
+                            System.out.println("Book not overdue Fee Amount: " + transaction.getFeeAmount());
+                        
+                        }
+ 
+                        System.out.println();
+   
                 }
                     }
     }
@@ -644,6 +696,8 @@ public Date getDueDateFromUser() {
     
     public void displayOverdueBooks(){
            System.out.println("=========Display Overdue Books===========");
+           
+           int id =1;
            
            if (transactions.isEmpty()) {
                     System.out.println("No transactions found.");
@@ -653,13 +707,20 @@ public Date getDueDateFromUser() {
                 Date currentDate = new Date();
 
                             if (transaction.getDueDate().before(currentDate)) {
+                                
+                                System.out.println("<<< Overdue Book : " + id + ">>>");
+                                ++id;
+                                
+                                
                             System.out.println("Book Id: " + transaction.getBook().getId());
                             System.out.println("Book Name: " + transaction.getBook().getTitle());
                             System.out.println("Book Author " + transaction.getBook().getAuthor());
-                     //       System.out.println("Member Name: " + transaction.getMember().getName());
+                            System.out.println("Member Name: " + transaction.getMember().getName());
                             System.out.println("Member NIC: " + transaction.getMember().getNic());
                             System.out.println("Check out date: " + transaction.getCheckOutDate());
                             System.out.println("Due Date: " + transaction.getDueDate());
+                             System.out.println();
+                            
         }
     }
 }
@@ -677,6 +738,8 @@ public Date getDueDateFromUser() {
       private long calculateDaysDifference(Date dueDate, Date checkoutDate) {
         long differenceInMillis = dueDate.getTime() - checkoutDate.getTime();
         long differenceInDays = differenceInMillis / (1000 * 60 * 60 * 24);
+        
+            
         
         
              return (int) differenceInDays;
@@ -700,6 +763,6 @@ public Date getDueDateFromUser() {
        
                 
     }
-    
+     /*============================================lend section over  ===========================================================*/
     
 }
