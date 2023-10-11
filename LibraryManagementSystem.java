@@ -518,7 +518,7 @@ public class LibraryManagementSystem {
          
          
    Book book1 = new Book(200,"World","John Cave");
-   Book book2 = new Book(201,"Sri Lanka","Mark leon");
+   Book book2 = new Book(201,"Sri Lanka","Mark Leon");
    books.add(book1);
     books.add(book2);
    Member mem1 = new Member(1000,"Ana marie","077111111","Colombo","201");
@@ -532,10 +532,10 @@ public class LibraryManagementSystem {
             SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 
             // Parse the date string "2023/09/18" into a Date object
-            Date specificDate1 = dateFormat.parse("2023/09/18");
+            Date specificDate1 = dateFormat.parse("2023/09/28");  // today 10/05  , 7 days ago 09/27 || (7*50)  = 350
             
             // Parse the date string "2023/09/11" into a Date object
-            Date specificDate2 = dateFormat.parse("2023/09/11");
+            Date specificDate2 = dateFormat.parse("2023/09/20"); // today 10/05  , 15 days ago 09/19 || (7*50) + (15-7)*100 = 1150
             
              Transaction transaction1 = new Transaction(500, book1, mem1, currentDate, specificDate1);
                Transaction transaction2 = new Transaction(501, book2, mem2, currentDate, specificDate2);
@@ -563,7 +563,7 @@ public class LibraryManagementSystem {
     System.out.println();
     
     
-    }
+    }   
     
     
     
@@ -735,7 +735,7 @@ public Book findBookByTitleAndAuthor(String title, String author) {
         return null;
     }
      
-      private long calculateDaysDifference(Date dueDate, Date checkoutDate) {
+    private long calculateDaysDifference(Date dueDate, Date checkoutDate) {
         long differenceInMillis = dueDate.getTime() - checkoutDate.getTime();
         long differenceInDays = differenceInMillis / (1000 * 60 * 60 * 24);
         
